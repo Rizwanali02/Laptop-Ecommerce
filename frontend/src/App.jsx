@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Contact from "./components/Contect";
 import About from "./components/About";
 import Dashboard from "./pages/Admin/Dashboard";
 import Login from "./pages/Login";
@@ -33,7 +32,6 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
         {isAuthenticated ? (
           <Route path="/dashboard" element={<Dashboard />} />
         ) : (

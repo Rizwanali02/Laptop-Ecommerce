@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
@@ -10,11 +10,17 @@ import axios from "axios";
 import { CiDark } from "react-icons/ci";
 import { MdSunny } from "react-icons/md";
 
-
-
 export default function Navbar() {
-  const { mode, setMode, isAuthenticated, user, setIsAuthenticated } =
+  const { mode, setMode, isAuthenticated, user, setUser, setIsAuthenticated } =
     useAuthContext();
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("lapy-user"));
+    if (storedUser) {
+      setUser(storedUser);
+      setIsAuthenticated(true);
+    }
+  }, [setUser, setIsAuthenticated]);
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -35,7 +41,11 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className={`${mode === "dark" ? "bg-gradient-to-br from-slate-900 via-slate-950 to-black" : "bg-white"}`}
+      className={`${
+        mode === "dark"
+          ? "bg-gradient-to-br from-slate-900 via-slate-950 to-black"
+          : "bg-gray-900"
+      }`}
     >
       {({ open }) => (
         <div
@@ -63,11 +73,8 @@ export default function Navbar() {
                     <div className="flex space-x-4">
                       <Link
                         to="/dashboard"
-                        className={
-                          mode === "dark"
-                            ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                            : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                        }
+                        className={`btn btn-outline btn-accent hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer
+                         ${mode === "dark" ? "text-white " : "text-black "}`}
                       >
                         DASHBOARD
                       </Link>
@@ -81,11 +88,8 @@ export default function Navbar() {
                   <div className="flex space-x-4">
                     <Link
                       to="/"
-                      className={
-                        mode === "dark"
-                          ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                          : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                      }
+                      className={`btn btn-outline btn-error h-full hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer
+                      ${mode === "dark" ? "text-white " : "text-black "}`}
                     >
                       HOME
                     </Link>
@@ -95,51 +99,29 @@ export default function Navbar() {
                   <div className="flex space-x-4">
                     <Link
                       to="/about"
-                      className={
-                        mode === "dark"
-                          ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                          : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                      }
+                      className={`btn btn-outline btn-info hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer
+                      ${mode === "dark" ? "text-white " : "text-black "}`}
                     >
                       ABOUT
                     </Link>
                   </div>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                    <Link
-                      to="/contact"
-                      className={
-                        mode === "dark"
-                          ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                          : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                      }
-                    >
-                      CONTACT
-                    </Link>
-                  </div>
-                </div>
+
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {isAuthenticated ? (
                       <button
                         onClick={handleLogout}
-                        className={
-                          mode === "dark"
-                            ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                            : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                        }
+                        className={`btn btn-outline btn-warning hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer
+                         ${mode === "dark" ? "text-white " : "text-black "}`}
                       >
                         LOGOUT
                       </button>
                     ) : (
                       <Link
                         to="/login"
-                        className={
-                          mode === "dark"
-                            ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                            : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                        }
+                        className={`btn btn-outline btn-warning hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer
+                        ${mode === "dark" ? "text-white " : "text-black "}`}
                       >
                         LOGIN
                       </Link>
@@ -155,10 +137,9 @@ export default function Navbar() {
                       className={mode === "light" ? "bg-white" : "bg-gray-900"}
                     >
                       {mode === "light" ? (
-                         <CiDark  className="text-2xl size-10  hover:text-gray-500" />
-                        
+                        <CiDark className="text-2xl size-10  hover:text-gray-500 bg-gray-900 text-white" />
                       ) : (
-                        <MdSunny  className="text-2xl size-10 text-white bg-slate-950 hover:text-gray-400" />
+                        <MdSunny className="text-2xl size-10 text-white bg-slate-950 hover:text-gray-400" />
                       )}
                     </button>
                   </div>
@@ -171,67 +152,43 @@ export default function Navbar() {
             <div className="px-2 pt-2 pb-3 space-y-1">
               <Link
                 to="/"
-                className={
-                  mode === "dark"
-                    ? "text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
-                    : "text-black block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
-                }
+                className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                `}
               >
                 HOME
               </Link>
               <Link
                 to="/about"
-                className={
-                  mode === "dark"
-                    ? "text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
-                    : "text-black block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
-                }
+                className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                `}
               >
                 ABOUT
               </Link>
-              <Link
-                to="/contact"
-                className={
-                  mode === "dark"
-                    ? "text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
-                    : "text-black block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
-                }
-              >
-                CONTACT
-              </Link>
+
               {user?.user.isAdmin === true ? (
-              <Link
-                to="/dashboard"
-                className={
-                  mode === "dark"
-                    ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                    : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
-                }
-              >
-                DASHBOARD
-              </Link>
-               ) : (
+                <Link
+                  to="/dashboard"
+                  className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                  `}
+                >
+                  DASHBOARD
+                </Link>
+              ) : (
                 ""
-              )} 
+              )}
               {isAuthenticated ? (
-                <button
+                <Link
                   onClick={handleLogout}
-                  className={
-                    mode === "dark"
-                      ? "text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
-                      : "text-black block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
-                  }
+                  className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                  `}
                 >
                   LOGOUT
-                </button>
+                </Link>
               ) : (
                 <Link
                   to="/login"
-                  className={
-                    mode === "dark"
-                      ? "text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
-                      : "text-black block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
-                  }
+                  className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                  `}
                 >
                   LOGIN
                 </Link>
@@ -246,7 +203,7 @@ export default function Navbar() {
                   }
                 >
                   {mode === "light" ? (
-                    <CiDark className="text-3xl" />
+                    <CiDark className="text-3xl bg-gray-900 text-white" />
                   ) : (
                     <CiLight className="text-3xl  bg-black text-white hover:text-gray-400" />
                   )}

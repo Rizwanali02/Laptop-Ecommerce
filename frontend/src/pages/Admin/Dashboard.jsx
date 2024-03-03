@@ -98,7 +98,7 @@ const Dashboard = () => {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className={`flex h-11 justify-between items-center p-6  border-b-4 bg-gray-800`}>
+        <header className={`flex h-11 justify-between items-center p-6   bg-gray-800`}>
           <div className="flex items-center">
             <button
               onClick={toggleSidebar}

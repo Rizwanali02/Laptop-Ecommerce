@@ -4,11 +4,12 @@ import toast from "react-hot-toast";
 import { BeatLoader } from "react-spinners";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
 
 const MyProducts = () => {
   const [myProduct, setMyProduct] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const { mode } = useAuthContext();
   useEffect(() => {
     const fetchMyProducts = async () => {
       setLoading(true);
@@ -47,7 +48,11 @@ const MyProducts = () => {
   console.log(myProduct);
 
   return (
-    <div className="flex flex-wrap justify-center gap-10 p-5">
+    <div
+      className={`flex flex-wrap justify-center gap-10 p-5 ${
+        mode === "dark" ? "bg-gray-700" : ""
+      }`}
+    >
       {loading ? (
         <BeatLoader color="gray" size={30} />
       ) : (
@@ -71,7 +76,6 @@ const MyProducts = () => {
                 <Link
                   to={`/admin/update/${product._id}`}
                   className="btn btn-primary"
-                  
                 >
                   UPDATE
                 </Link>

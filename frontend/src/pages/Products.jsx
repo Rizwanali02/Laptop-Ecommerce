@@ -32,7 +32,7 @@ const Products = () => {
       }`}
     >
       <div className="container mx-auto px-4 py-8">
-        <h3 className="text-2xl font-bold mb-4">Latest Laptops</h3>
+        <h3 className="text-2xl font-bold mb-4 badge badge-accent  badge-outline h-full">Latest Laptops</h3>
         <div className="flex flex-wrap justify-center p-5 -mx-4">
           {lapy && lapy.length > 0 ? (
             lapy.map((product) => {
