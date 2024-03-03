@@ -1,0 +1,261 @@
+import React from "react";
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
+import { MdDarkMode } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
+import { useAuthContext } from "../context/AuthContext";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { CiDark } from "react-icons/ci";
+import { MdSunny } from "react-icons/md";
+
+
+
+export default function Navbar() {
+  const { mode, setMode, isAuthenticated, user, setIsAuthenticated } =
+    useAuthContext();
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.get(
+        "http://localhost:8000/api/v2/user/logout",
+        { withCredentials: true }
+      );
+      setIsAuthenticated(false);
+      localStorage.removeItem("lapy-user");
+      localStorage.removeItem("token");
+      toast.success(data.message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <Disclosure
+      as="nav"
+      className={`${mode === "dark" ? "bg-gradient-to-br from-slate-900 via-slate-950 to-black" : "bg-white"}`}
+    >
+      {({ open }) => (
+        <div
+          className={`${mode === "light" ? "border-b-2 border-gray-950" : ""}`}
+        >
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
+            <div className="relative flex h-16 items-center justify-between">
+              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                {/* Mobile menu button*/}
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  {open ? (
+                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
+              </div>
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div className="flex flex-shrink-0 items-center">
+                  <strong className="text-white">LaptopMart</strong>
+                </div>
+
+                {user?.user.isAdmin === true ? (
+                  <div className="hidden sm:ml-6 sm:block">
+                    <div className="flex space-x-4">
+                      <Link
+                        to="/dashboard"
+                        className={
+                          mode === "dark"
+                            ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                            : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                        }
+                      >
+                        DASHBOARD
+                      </Link>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
+                    <Link
+                      to="/"
+                      className={
+                        mode === "dark"
+                          ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                          : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                      }
+                    >
+                      HOME
+                    </Link>
+                  </div>
+                </div>
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
+                    <Link
+                      to="/about"
+                      className={
+                        mode === "dark"
+                          ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                          : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                      }
+                    >
+                      ABOUT
+                    </Link>
+                  </div>
+                </div>
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
+                    <Link
+                      to="/contact"
+                      className={
+                        mode === "dark"
+                          ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                          : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                      }
+                    >
+                      CONTACT
+                    </Link>
+                  </div>
+                </div>
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
+                    {isAuthenticated ? (
+                      <button
+                        onClick={handleLogout}
+                        className={
+                          mode === "dark"
+                            ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                            : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                        }
+                      >
+                        LOGOUT
+                      </button>
+                    ) : (
+                      <Link
+                        to="/login"
+                        className={
+                          mode === "dark"
+                            ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                            : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                        }
+                      >
+                        LOGIN
+                      </Link>
+                    )}
+                  </div>
+                </div>
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
+                    <button
+                      onClick={() =>
+                        mode === "light" ? setMode("dark") : setMode("light")
+                      }
+                      className={mode === "light" ? "bg-white" : "bg-gray-900"}
+                    >
+                      {mode === "light" ? (
+                         <CiDark  className="text-2xl size-10  hover:text-gray-500" />
+                        
+                      ) : (
+                        <MdSunny  className="text-2xl size-10 text-white bg-slate-950 hover:text-gray-400" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <Disclosure.Panel className="sm:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <Link
+                to="/"
+                className={
+                  mode === "dark"
+                    ? "text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                    : "text-black block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                }
+              >
+                HOME
+              </Link>
+              <Link
+                to="/about"
+                className={
+                  mode === "dark"
+                    ? "text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                    : "text-black block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                }
+              >
+                ABOUT
+              </Link>
+              <Link
+                to="/contact"
+                className={
+                  mode === "dark"
+                    ? "text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                    : "text-black block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                }
+              >
+                CONTACT
+              </Link>
+              {user?.user.isAdmin === true ? (
+              <Link
+                to="/dashboard"
+                className={
+                  mode === "dark"
+                    ? "text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                    : "text-black hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer"
+                }
+              >
+                DASHBOARD
+              </Link>
+               ) : (
+                ""
+              )} 
+              {isAuthenticated ? (
+                <button
+                  onClick={handleLogout}
+                  className={
+                    mode === "dark"
+                      ? "text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                      : "text-black block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                  }
+                >
+                  LOGOUT
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className={
+                    mode === "dark"
+                      ? "text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                      : "text-black block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white"
+                  }
+                >
+                  LOGIN
+                </Link>
+              )}
+              <div className="ml-3">
+                <button
+                  onClick={() =>
+                    mode === "light" ? setMode("dark") : setMode("light")
+                  }
+                  className={
+                    mode === "light" ? "bg-white" : "bg-gray-700 text-white"
+                  }
+                >
+                  {mode === "light" ? (
+                    <CiDark className="text-3xl" />
+                  ) : (
+                    <CiLight className="text-3xl  bg-black text-white hover:text-gray-400" />
+                  )}
+                </button>
+              </div>
+            </div>
+          </Disclosure.Panel>
+        </div>
+      )}
+    </Disclosure>
+  );
+}
