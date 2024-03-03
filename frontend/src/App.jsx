@@ -11,7 +11,7 @@ import Register from "./pages/Register";
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
 import SingleLapys from "./pages/SingleLapys";
-import CreateProducts from "./pages/Admin/CreateProducts";
+import UpdateProducts from "./pages/Admin/UpdateProducts";
 
 // Capitalize the component name
 const NotFoundPage = () => {
@@ -24,7 +24,7 @@ const NotFoundPage = () => {
 
 const App = () => {
   const { isAuthenticated, user } = useAuthContext();
-
+  console.log(user);
   return (
     <Router>
       <Navbar />
@@ -39,7 +39,12 @@ const App = () => {
         ) : (
           <Route path="/" element={<Home />} />
         )}
-        <Route path="/admin/create" element={<CreateProducts />} />
+
+        {isAuthenticated && user.user.isAdmin === true ? (
+          <Route path="/admin/update/:id" element={<UpdateProducts />} />
+        ) : (
+          <Route path="/" element={<Home />} />
+        )}
         <Route path="/lapy/:id" element={<SingleLapys />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
