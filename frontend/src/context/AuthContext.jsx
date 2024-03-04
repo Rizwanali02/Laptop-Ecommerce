@@ -10,13 +10,29 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("lapy-user")) || null
   );
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(!!user);
   const [lapy, setLapy] = useState([]);
   const [mode, setMode] = useState("light");
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("lapy-cart")) || []
+  );
 
   useEffect(() => {
     localStorage.setItem("lapy-user", JSON.stringify(user));
+    setIsAuthenticated(!!user);
   }, [user]);
+
+  useEffect(() => {
+    localStorage.setItem("lapy-cart", JSON.stringify(cart));
+  }, [cart]);
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  const removeFromCart = (productId) => {
+    setCart(cart.filter((item) => item._id !== productId));
+  };
 
   return (
     <AuthContext.Provider
@@ -29,6 +45,9 @@ export const AuthContextProvider = ({ children }) => {
         setLapy,
         mode,
         setMode,
+        cart,
+        addToCart,
+        removeFromCart,
       }}
     >
       {children}

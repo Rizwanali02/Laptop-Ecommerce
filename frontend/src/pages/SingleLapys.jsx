@@ -89,7 +89,7 @@ const SingleLapys = () => {
                   />
                 </Link>
               </div>
-              <p className="badge badge-info badge-outline">
+              <p className="">
                 If you want to buy this product click on whatsapp icon and
                 contact me
               </p>

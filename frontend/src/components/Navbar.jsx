@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { useAuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
@@ -11,8 +10,15 @@ import { CiDark } from "react-icons/ci";
 import { MdSunny } from "react-icons/md";
 
 export default function Navbar() {
-  const { mode, setMode, isAuthenticated, user, setUser, setIsAuthenticated } =
-    useAuthContext();
+  const {
+    mode,
+    setMode,
+    isAuthenticated,
+    user,
+    setUser,
+    setIsAuthenticated,
+    cart,
+  } = useAuthContext();
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("lapy-user"));
@@ -65,7 +71,13 @@ export default function Navbar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <strong className="text-white">LaptopMart</strong>
+                  <strong className="text-white">
+                    <img
+                      src="/images/logo.png"
+                      className="h-10 text-white"
+                      alt=""
+                    />
+                  </strong>
                 </div>
 
                 {user?.user.isAdmin === true ? (
@@ -109,6 +121,23 @@ export default function Navbar() {
 
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
+                    <div className="indicator">
+                      <span className="indicator-item badge badge-success mt-1">
+                        {cart.length}
+                      </span>
+                      <Link
+                        to="/cart"
+                        className={`btn btn-outline btn-success hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium cursor-pointer
+                      ${mode === "dark" ? "text-white " : "text-black "}`}
+                      >
+                        Cart
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
                     {isAuthenticated ? (
                       <button
                         onClick={handleLogout}
@@ -144,6 +173,17 @@ export default function Navbar() {
                     </button>
                   </div>
                 </div>
+                <Link
+                  to="https://api.whatsapp.com/send?phone=7976157614"
+                  target="_blank"
+                  className="ml-[1rem] mt-2"
+                >
+                  <img
+                    className="whatsapp-icon-2 h-7 cursor-pointer  "
+                    src="/images/whatsapp.png"
+                    alt="laptopmart"
+                  />
+                </Link>
               </div>
             </div>
           </div>
@@ -163,6 +203,19 @@ export default function Navbar() {
                 `}
               >
                 ABOUT
+              </Link>
+
+              <Link
+                to="/cart"
+                className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                `}
+              >
+                <div className="indicator">
+                  <span className="indicator-item badge badge-primary mt-[14px] -mr-7">
+                    {cart?.length}
+                  </span>
+                  CART
+                </div>
               </Link>
 
               {user?.user.isAdmin === true ? (

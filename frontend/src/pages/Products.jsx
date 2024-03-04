@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { BeatLoader } from "react-spinners";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Products = () => {
-  const { mode, lapy, setLapy } = useAuthContext();
+  const { mode, lapy, setLapy, cart, addToCart, removeFromCart } = useAuthContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -25,6 +25,10 @@ const Products = () => {
     fetchProducts();
   }, []);
 
+  const isProductInCart = (productId) => {
+    return cart.some((item) => item._id === productId);
+  };
+
   return (
     <div
       className={`${
@@ -32,10 +36,13 @@ const Products = () => {
       }`}
     >
       <div className="container mx-auto px-4 py-8">
-        <h3 className="text-2xl font-bold mb-4 badge badge-accent  badge-outline h-full">Latest Laptops</h3>
+        <h3 className="text-2xl font-bold mb-4 badge badge-accent badge-outline h-full">
+          Latest Laptops
+        </h3>
         <div className="flex flex-wrap justify-center p-5 -mx-4">
           {lapy && lapy.length > 0 ? (
             lapy.map((product) => {
+              const isInCart = isProductInCart(product._id);
               return (
                 <Link
                   to={`/lapy/${product._id}`}
@@ -48,13 +55,34 @@ const Products = () => {
                       src={product.mainImage.url}
                       alt="Laptop"
                     />
-                    <div className="p-4">
+                    <div className="p-4 flex justify-between items-center">
                       <h2 className="text-xl font-semibold text-red-500 mb-2">
-                        {product.laptopName
-                          ? product.laptopName
-                          : "New Laptop"}
+                        {product.laptopName ? product.laptopName : "New Laptop"}
                         <span className="text-sm text-gray-700 ml-2">NEW</span>
                       </h2>
+                      <div>
+                        {isInCart ? (
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              removeFromCart(product._id);
+                            }}
+                            className="btn btn-primary btn-outline"
+                          >
+                            Remove
+                          </button>
+                        ) : (
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              addToCart(product);
+                            }}
+                            className="btn btn-primary btn-outline"
+                          >
+                            ADD CART
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -68,6 +96,5 @@ const Products = () => {
     </div>
   );
 };
-
 
 export default Products;

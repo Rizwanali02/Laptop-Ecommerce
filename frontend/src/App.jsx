@@ -11,6 +11,7 @@ import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
 import SingleLapys from "./pages/SingleLapys";
 import UpdateProducts from "./pages/Admin/UpdateProducts";
+import Cart from "./pages/Cart";
 
 // Capitalize the component name
 const NotFoundPage = () => {
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
         )}
         <Route path="/lapy/:id" element={<SingleLapys />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Toaster />
