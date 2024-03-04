@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
+import {RxCross2 } from "react-icons/rx"
 
 const Cart = () => {
-  const { cart, removeFromCart } = useAuthContext(); 
+  const { cart, removeFromCart, mode } = useAuthContext();
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -14,10 +15,20 @@ const Cart = () => {
   }, [cart]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div
+      className={`flex px-5 flex-col items-center justify-center min-h-screen ${
+        mode === "dark" ? "bg-slate-900 text-white" : "bg-gray-300"
+      }`}
+    >
       <h1 className="text-4xl font-bold mb-4">Your Cart</h1>
-      <div className="flex justify-center w-full max-w-7xl">
-        <div className="w-1/2 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div
+        className={`flex flex-col md:flex-row justify-center w-full max-w-7xl `}
+      >
+        <div
+          className={`w-full md:w-1/2 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:mb-0 md:mr-4 ${
+            mode === "dark" ? "bg-gray-200 text-black" : ""
+          }`}
+        >
           <h2 className="text-2xl font-bold mb-4">Products</h2>
           <div className="flex flex-col">
             {cart?.map((product) => (
@@ -33,23 +44,26 @@ const Cart = () => {
                   />
                   <div className="ml-4">
                     <h3 className="text-xl font-bold">{product.laptopName}</h3>
-                    <p className="text-gray-600">{product.laptopName}</p>
                   </div>
                 </div>
                 <div className="flex gap-3">
                   <p className="text-xl font-bold">{product.price} Rs</p>
                   <button
                     onClick={() => removeFromCart(product._id)}
-                    className="text-red-500"
+                    className="text-red-500 hover:scale-95"
                   >
-                    Remove
+                   <RxCross2 size={30} />
                   </button>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <div className="w-1/2 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ml-4">
+        <div
+          className={`w-full md:w-1/2 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:ml-4 ${
+            mode === "dark" ? "bg-gray-200 text-black" : ""
+          }`}
+        >
           <h2 className="text-2xl font-bold mb-4">Total Price</h2>
           <div className="flex items-center justify-between">
             <p className="text-xl font-bold">Total: ${totalPrice}</p>

@@ -18,6 +18,7 @@ export default function Navbar() {
     setUser,
     setIsAuthenticated,
     cart,
+    setCart
   } = useAuthContext();
 
   useEffect(() => {
@@ -37,6 +38,8 @@ export default function Navbar() {
       );
       setIsAuthenticated(false);
       localStorage.removeItem("lapy-user");
+      localStorage.removeItem("lapy-cart");
+      setCart([])
       localStorage.removeItem("token");
       toast.success(data.message);
     } catch (error) {
@@ -159,6 +162,18 @@ export default function Navbar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
+                    <Link
+                      to="https://api.whatsapp.com/send?phone=7976157614"
+                      target="_blank"
+                      className=" btn btn-primary btn-outline"
+                    >
+                      WhatsApp
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
                     <button
                       onClick={() =>
                         mode === "light" ? setMode("dark") : setMode("light")
@@ -173,17 +188,6 @@ export default function Navbar() {
                     </button>
                   </div>
                 </div>
-                <Link
-                  to="https://api.whatsapp.com/send?phone=7976157614"
-                  target="_blank"
-                  className="ml-[1rem] mt-2"
-                >
-                  <img
-                    className="whatsapp-icon-2 h-7 cursor-pointer  "
-                    src="/images/whatsapp.png"
-                    alt="laptopmart"
-                  />
-                </Link>
               </div>
             </div>
           </div>
@@ -192,14 +196,14 @@ export default function Navbar() {
             <div className="px-2 pt-2 pb-3 space-y-1">
               <Link
                 to="/"
-                className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                className={`btn btn-accent btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
                 `}
               >
                 HOME
               </Link>
               <Link
                 to="/about"
-                className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                className={`btn btn-accent btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
                 `}
               >
                 ABOUT
@@ -207,7 +211,7 @@ export default function Navbar() {
 
               <Link
                 to="/cart"
-                className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                className={`btn btn-accent btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
                 `}
               >
                 <div className="indicator">
@@ -221,7 +225,7 @@ export default function Navbar() {
               {user?.user.isAdmin === true ? (
                 <Link
                   to="/dashboard"
-                  className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                  className={`btn btn-accent btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
                   `}
                 >
                   DASHBOARD
@@ -232,7 +236,7 @@ export default function Navbar() {
               {isAuthenticated ? (
                 <Link
                   onClick={handleLogout}
-                  className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                  className={`btn btn-accent btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
                   `}
                 >
                   LOGOUT
@@ -240,12 +244,22 @@ export default function Navbar() {
               ) : (
                 <Link
                   to="/login"
-                  className={`btn btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                  className={`btn btn-accent btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
                   `}
                 >
                   LOGIN
                 </Link>
               )}
+
+              <Link
+                to="https://api.whatsapp.com/send?phone=7976157614"
+                target="_blank"
+                className={`btn btn-primary btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
+                  `}
+              >
+                WhatsApp
+              </Link>
+
               <div className="ml-3">
                 <button
                   onClick={() =>

@@ -3,9 +3,11 @@ import { useAuthContext } from "../context/AuthContext";
 import { BeatLoader } from "react-spinners";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Products = () => {
-  const { mode, lapy, setLapy, cart, addToCart, removeFromCart } = useAuthContext();
+  const { mode, lapy, setLapy, cart, addToCart, removeFromCart } =
+    useAuthContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -66,6 +68,7 @@ const Products = () => {
                             onClick={(e) => {
                               e.preventDefault();
                               removeFromCart(product._id);
+                              toast.error("Product Remove");
                             }}
                             className="btn btn-primary btn-outline"
                           >
@@ -76,6 +79,7 @@ const Products = () => {
                             onClick={(e) => {
                               e.preventDefault();
                               addToCart(product);
+                              toast.success("Product Added");
                             }}
                             className="btn btn-primary btn-outline"
                           >
