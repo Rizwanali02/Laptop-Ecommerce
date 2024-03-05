@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
-// import useRegister from "../hooks/useRegister";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -12,8 +11,9 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  // const { loading, register } = useRegister();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -40,12 +40,13 @@ const Register = () => {
       setPhone("");
       setPassword("");
       setConfirmPassword("");
-      console.log("register data",data);
+      console.log("register data", data);
       toast.success(data.message);
+      navigate("/");
       // You may also want to show a success message or navigate to a different page here
     } catch (error) {
       console.log("register error ----", error);
-      // Handle error
+      toast.error("register error")
     } finally {
       setLoading(false);
     }

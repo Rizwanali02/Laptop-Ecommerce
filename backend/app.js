@@ -16,7 +16,7 @@ dbConnection();
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow requests from all origins
+    origin: 'http://localhost:5173', 
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials: true
 }));
@@ -32,6 +32,7 @@ app.use(fileupload({
 // Routes
 app.use("/api/v2/user", userRouter); // User Routes
 app.use("/api/v2/lapy", lapyRouter); // Admin Routes
+
 
 app.use(errorMiddleware);
 

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
-import {RxCross2 } from "react-icons/rx"
+import { RxCross2 } from "react-icons/rx";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cart, removeFromCart, mode } = useAuthContext();
@@ -13,6 +16,10 @@ const Cart = () => {
     };
     calculateTotal();
   }, [cart]);
+
+  const buyBtn = () => {
+    toast.success("Contact on WhatsApp");
+  };
 
   return (
     <div
@@ -52,7 +59,7 @@ const Cart = () => {
                     onClick={() => removeFromCart(product._id)}
                     className="text-red-500 hover:scale-95"
                   >
-                   <RxCross2 size={30} />
+                    <RxCross2 size={30} />
                   </button>
                 </div>
               </div>
@@ -68,6 +75,24 @@ const Cart = () => {
           <div className="flex items-center justify-between">
             <p className="text-xl font-bold">Total: ${totalPrice}</p>
           </div>
+          <button
+            onClick={buyBtn}
+            className="bg-blue-500 w-full  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          >
+            Buy Now
+          </button>
+          <button
+           
+            className="bg-blue-500 w-full  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+            >
+           <Link
+            to="https://api.whatsapp.com/send?phone=7976157614"
+            target="_blank"
+          >
+            WhatsApp
+          </Link>
+          </button>
+         
         </div>
       </div>
     </div>
