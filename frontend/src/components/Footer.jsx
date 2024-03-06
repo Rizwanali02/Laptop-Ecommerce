@@ -4,13 +4,16 @@ import { useAuthContext } from "../context/AuthContext";
 const Footer = () => {
   const { mode } = useAuthContext();
 
-
   return (
-    <footer className={`footer p-10  ${mode ==="dark" ? "bg-gray-800 text-white":"bg-white text-black"}`}>
+    <footer
+      className={`footer p-10  ${
+        mode === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"
+      }`}
+    >
       <aside>
-        <img src="/images/logo.png" alt="" />
+        <strong>LAPTOPMART</strong>
         <p>
-        Shashtri Nagar Jaipur, Rajasthan, IN
+          Shashtri Nagar Jaipur, Rajasthan, IN
           <br />
           +91-7976157614
         </p>
@@ -21,9 +24,8 @@ const Footer = () => {
         <p className="link link-hover">Repaire</p>
         <p className="link link-hover">Extend SSD </p>
         <p className="link link-hover">Extend RAM</p>
-      
       </nav>
-      
+
       <nav>
         <h6 className="footer-title">Legal</h6>
         <a className="link link-hover">Terms of use</a>

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 const HeroSection = () => {
   const images = [
     "/images/lapiimage2.webp",
-    // "/images/image2.jpg",
     "/images/image3.webp",
     // Add more image URLs here if needed
   ];

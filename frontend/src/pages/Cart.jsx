@@ -73,7 +73,7 @@ const Cart = () => {
         >
           <h2 className="text-2xl font-bold mb-4">Total Price</h2>
           <div className="flex items-center justify-between">
-            <p className="text-xl font-bold">Total: ${totalPrice}</p>
+            <p className="text-xl font-bold">Total: {totalPrice} Rs</p>
           </div>
           <button
             onClick={buyBtn}

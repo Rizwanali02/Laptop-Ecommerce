@@ -18,7 +18,7 @@ export default function Navbar() {
     setUser,
     setIsAuthenticated,
     cart,
-    setCart
+    setCart,
   } = useAuthContext();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function Navbar() {
       setIsAuthenticated(false);
       localStorage.removeItem("lapy-user");
       localStorage.removeItem("lapy-cart");
-      setCart([])
+      setCart([]);
       localStorage.removeItem("token");
       toast.success(data.message);
     } catch (error) {
@@ -74,12 +74,8 @@ export default function Navbar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <strong className="text-white">
-                    <img
-                      src="/images/logo.png"
-                      className="h-10 text-white"
-                      alt=""
-                    />
+                  <strong className="text-white text-4xl font-bold">
+                    LAPTOPMART
                   </strong>
                 </div>
 

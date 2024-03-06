@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
-import useCreateProduct from "../../hooks/useCreateProduct";
 import { useParams } from "react-router-dom";
 import useUpdateProduct from "../../hooks/useUpdateProduct.js";
 import axios from "axios";
