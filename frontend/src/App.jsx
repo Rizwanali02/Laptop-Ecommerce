@@ -24,7 +24,6 @@ const NotFoundPage = () => {
 
 const App = () => {
   const { isAuthenticated, user } = useAuthContext();
-  console.log(user);
   return (
     <Router>
       <Navbar />

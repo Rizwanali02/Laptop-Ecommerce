@@ -13,7 +13,6 @@ const useCreateProduct = () => {
 
         setLoading(true);
         const token = localStorage.getItem("token");
-        console.log("Create Product Receive token ", token);
         try {
 
             const res = await axios.post("http://localhost:8000/api/v2/lapy/post", formData, {
@@ -24,7 +23,6 @@ const useCreateProduct = () => {
                 withCredentials: true, 
             });
 
-            console.log("Created Product--", res.data);
             setLapy(res.data);
             toast.success(res.data.message);
         } catch (error) {

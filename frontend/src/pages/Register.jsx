@@ -40,7 +40,6 @@ const Register = () => {
       setPhone("");
       setPassword("");
       setConfirmPassword("");
-      console.log("register data", data);
       toast.success(data.message);
       navigate("/");
       // You may also want to show a success message or navigate to a different page here

@@ -39,7 +39,7 @@ export default function Navbar() {
       setIsAuthenticated(false);
       localStorage.removeItem("lapy-user");
       localStorage.removeItem("lapy-cart");
-      setCart([]);
+      // setCart([]);
       localStorage.removeItem("token");
       toast.success(data.message);
     } catch (error) {

@@ -28,7 +28,6 @@ const UpdateProducts = () => {
           `http://localhost:8000/api/v2/lapy/singlelapy/${id}`,
           { withCredentials: true }
         );
-        console.log(data);
         setLaptopName(data.lapy.laptopName);
         setBrand(data.lapy.brand);
         setRam(data.lapy.ram);

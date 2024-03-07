@@ -29,9 +29,8 @@ const useLogin = () => {
             if (data.error) {
                 throw new Error(data.error);
             }
-            console.log(data);
+
             localStorage.setItem("token", data.token)
-            // Set user state and navigate to home
             setUser(data);
             localStorage.setItem("lapy-user", JSON.stringify(data));
             setIsAuthenticated(true);

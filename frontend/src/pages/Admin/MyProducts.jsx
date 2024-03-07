@@ -45,7 +45,6 @@ const MyProducts = () => {
     }
   };
 
-  console.log(myProduct);
 
   return (
     <div

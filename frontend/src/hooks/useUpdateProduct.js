@@ -10,8 +10,7 @@ const useUpdateProduct = () => {
     const update = async ({ updateProduct, id }) => {
 
         setLoading(true);
-        // const token = localStorage.getItem("token");
-        // console.log("Create Product Receive token ", token);
+ 
         try {
 
             const res = await axios.put(`http://localhost:8000/api/v2/lapy/update/${id}`, updateProduct, {
@@ -22,7 +21,6 @@ const useUpdateProduct = () => {
                 withCredentials: true,
             });
 
-            console.log("Created Product--", res.data);
             setLapy(res.data);
             toast.success(res.data.message);
         } catch (error) {

@@ -58,7 +58,6 @@ const login = asyncHandler(async (req, res, next) => {
 });
 
 const logout = asyncHandler(async (req, res) => {
-    console.log("Logout route hit"); // Debugging statement
     try {
         res.status(200).cookie("token", "", {
             expires: new Date(Date.now()),

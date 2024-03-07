@@ -6,13 +6,9 @@ import jwt from "jsonwebtoken";
 
 const isAuthenticated = asyncHandler(async (req, res, next) => {
   const { token } = req.cookies;
-  console.log(req.cookies);
-  console.log("Auth middleware called");
   if (!token) {
-    console.log("token not found");
     return next(new ErrorHandler("User is not authenticated", 400));
   }
-  console.log("auth me token ", token);
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.user = await User.findById(decoded.id);

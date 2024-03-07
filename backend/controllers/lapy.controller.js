@@ -15,7 +15,6 @@ const lapyPost = asyncHandler(async (req, res, next) => {
 
     const { mainImage } = req.files;
 
-    // console.log("mainimage--", mainImage);
 
     const { laptopName, brand, processor, displaySize, stock, storage, graphicsCard, other, ram, price } = req.body;
     if (!laptopName || !brand || !processor || !displaySize || !stock || !graphicsCard || !other || !ram || !storage || !price) {
@@ -24,7 +23,6 @@ const lapyPost = asyncHandler(async (req, res, next) => {
             message: "Please fill all the fields"
         })
     }
-    console.log(laptopName, brand, price, processor, displaySize, stock, storage, graphicsCard, other, ram);
 
     const createdBy = req.user._id;
     const adminName = req.user.name;
@@ -41,8 +39,7 @@ const lapyPost = asyncHandler(async (req, res, next) => {
 
     const mainImageRes = await cloudinary.uploader.upload(mainImage.tempFilePath);
 
-    console.log("upload ---", mainImageRes);
-    // const { public_id, url } = mainImageRes;
+
 
 
     const productData = {

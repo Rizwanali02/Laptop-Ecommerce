@@ -18,7 +18,6 @@ const Products = () => {
             withCredentials: true,
           }
         );
-        console.log(data.allLapy);
         setLapy(data.allLapy);
       } catch (error) {
         console.log(error);
