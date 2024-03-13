@@ -9,35 +9,33 @@ const useUpdateProfile = () => {
     const [loading, setLoading] = useState(false);
     const { setUser, user } = useAuthContext();
 
-    const updateProfile = async (formData) => {
+    const updateProfile = async (formData,setIsEditing) => {
         setLoading(true)
         try {
-            const res = await axios.put(`http://localhost:8000/api/v2/user/myprofile/${user?.user._id}`, formData,
+            const res = await axios.put(
+                `http://localhost:8000/api/v2/user/myprofile/${user?.user?._id}`,
+                formData,
                 {
                     headers: {
-                        'Content-Type': 'multipart/form-data',
-                        // Authorization: `Bearer ${token}`,
+                        "Content-Type": "multipart/form-data",
                     },
                     withCredentials: true,
                 }
             );
-
-            const data = res;
-            console.log(data);
-            setUser(data);
-            toast.success(data.message);
-
-
+            console.log(res);
+            const newUser = res.data;
+            setUser(newUser);
+            toast.success(newUser.message);
+            setIsEditing(false);
         } catch (error) {
-            console.log("Error Updateing User Profile", error);
-            toast.error("Error Updateing User Profile");
+            console.log("Error Updating User Profile", error);
+            toast.error("Error Updating User Profile");
         } finally {
             setLoading(false);
         }
 
-    };
+    }
     return { updateProfile, loading };
-
 }
 
 export default useUpdateProfile;
