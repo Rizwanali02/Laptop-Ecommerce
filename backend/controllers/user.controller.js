@@ -72,5 +72,50 @@ const logout = asyncHandler(async (req, res) => {
     }
 });
 
+const getMyProfile = asyncHandler(async (req, res) => {
 
-export { register, login, logout };
+    const user = req.user;
+    res.status(200).json({
+        success: true,
+        user
+    });
+
+});
+
+const updateProfile = asyncHandler(async (req, res, next) => {
+    try{
+        const { id } = req.params;
+        let user = await User.findById(id);
+        if (!user) return next(new ErrorHandler(404, "User not found"));
+
+        const newUser = {
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+        }
+
+        user = await User.findByIdAndUpdate(id, newUser, {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
+        });
+
+        res.status(200).json({
+            success: true,
+            message: "User updated successfully",
+            user
+        });
+    }catch (error) {
+        console.log("errorr profile update",error);
+    }
+
+});
+
+
+export {
+    register,
+    login,
+    logout,
+    getMyProfile,
+    updateProfile
+};

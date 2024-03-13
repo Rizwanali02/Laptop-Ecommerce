@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { CiDark } from "react-icons/ci";
 import { MdSunny } from "react-icons/md";
-
+import { MdManageAccounts } from "react-icons/md";
+import MyProfile from "../pages/MyProfile";
 export default function Navbar() {
   const {
     mode,
@@ -184,6 +185,33 @@ export default function Navbar() {
                     </button>
                   </div>
                 </div>
+                {isAuthenticated && (
+                  <div className="hidden sm:ml-6 sm:block">
+                    <div className="flex space-x-4">
+                      <div className="dropdown">
+                        <div tabIndex={0} role="button">
+                          {mode === "light" ? (
+                            <MdManageAccounts className="text-2xl size-10  hover:text-gray-500 bg-gray-900 text-white" />
+                          ) : (
+                            <MdManageAccounts className="text-2xl size-10 text-white bg-slate-950 hover:text-gray-400" />
+                          )}
+                        </div>
+                        <div
+                          tabIndex={0}
+                          className={`dropdown-content z-[1] card card-compact w-80 p-2 shadow  ${
+                            mode === "dark"
+                              ? "bg-slate-700 text-white"
+                              : "bg-white text-black"
+                          }`}
+                        >
+                          <div className="card-body">
+                            <MyProfile />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

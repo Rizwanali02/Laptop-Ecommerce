@@ -12,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
   );
   const [isAuthenticated, setIsAuthenticated] = useState(!!user);
   const [lapy, setLapy] = useState([]);
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState("light");
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("lapy-cart")) || []
   );
