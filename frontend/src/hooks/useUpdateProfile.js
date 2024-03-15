@@ -13,7 +13,7 @@ const useUpdateProfile = () => {
         setLoading(true)
         try {
             const res = await axios.put(
-                `http://localhost:8000/api/v2/user/myprofile/${user?.user?._id}`,
+                `https://laptop-ecommerce-backend-chi.vercel.app/api/v2/user/myprofile/${user?.user?._id}`,
                 formData,
                 {
                     headers: {

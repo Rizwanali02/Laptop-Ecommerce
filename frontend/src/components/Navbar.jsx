@@ -34,7 +34,7 @@ export default function Navbar() {
     e.preventDefault();
     try {
       const { data } = await axios.get(
-        "http://localhost:8000/api/v2/user/logout",
+        "https://laptop-ecommerce-backend-chi.vercel.app/api/v2/user/logout",
         { withCredentials: true }
       );
       setIsAuthenticated(false);

@@ -24,7 +24,7 @@ const Register = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        `http://localhost:8000/api/v2/user/register`,
+        `https://laptop-ecommerce-backend-chi.vercel.app/api/v2/user/register`,
         formData,
         {
           withCredentials: true,

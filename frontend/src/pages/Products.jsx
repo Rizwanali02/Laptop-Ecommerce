@@ -13,7 +13,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8000/api/v2/lapy/all`,
+          `https://laptop-ecommerce-backend-chi.vercel.app/api/v2/lapy/all`,
           {
             withCredentials: true,
           }
