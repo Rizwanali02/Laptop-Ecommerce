@@ -160,7 +160,7 @@ export default function Navbar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     <Link
-                      to="https://api.whatsapp.com/send?phone=7976157614"
+                      to="https://api.whatsapp.com/send?phone=8696916676"
                       target="_blank"
                       className=" btn btn-primary btn-outline"
                     >
@@ -276,7 +276,7 @@ export default function Navbar() {
               )}
 
               <Link
-                to="https://api.whatsapp.com/send?phone=7976157614"
+                to="https://api.whatsapp.com/send?phone=8696916676"
                 target="_blank"
                 className={`btn btn-primary btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
                   `}
