@@ -16,7 +16,7 @@ dbConnection();
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: 'http://localhost:5173',
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials: true
 }));
@@ -30,6 +30,9 @@ app.use(fileupload({
 }));
 
 // Routes
+app.get("/", (req, res) => {
+    res.send().json({ message: "deploying" })
+})
 app.use("/api/v2/user", userRouter); // User Routes
 app.use("/api/v2/lapy", lapyRouter); // Admin Routes
 
