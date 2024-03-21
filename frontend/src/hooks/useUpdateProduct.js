@@ -13,7 +13,7 @@ const useUpdateProduct = () => {
  
         try {
 
-            const res = await axios.put(`https://laptop-ecommerce-backend-chi.vercel.app/api/v2/lapy/update/${id}`, updateProduct, {
+            const res = await axios.put(`https://laptop-ecommerce-0czh.onrender.com//api/v2/lapy/update/${id}`, updateProduct, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     // Authorization: `Bearer ${token}`,

@@ -15,7 +15,7 @@ const MyProducts = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `https://laptop-ecommerce-backend-chi.vercel.app/api/v2/lapy/mylapys`,
+          `https://laptop-ecommerce-0czh.onrender.com//api/v2/lapy/mylapys`,
           {
             withCredentials: true,
           }
@@ -33,7 +33,7 @@ const MyProducts = () => {
 
   const deleteProductHandler = async (id) => {
     try {
-      await axios.delete(`https://laptop-ecommerce-backend-chi.vercel.app/api/v2/lapy/delete/${id}`, {
+      await axios.delete(`https://laptop-ecommerce-0czh.onrender.com//api/v2/lapy/delete/${id}`, {
         withCredentials: true,
       });
 

@@ -15,7 +15,7 @@ const useCreateProduct = () => {
         const token = localStorage.getItem("token");
         try {
 
-            const res = await axios.post("https://laptop-ecommerce-backend-chi.vercel.app/api/v2/lapy/post", formData, {
+            const res = await axios.post("https://laptop-ecommerce-0czh.onrender.com//api/v2/lapy/post", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`,

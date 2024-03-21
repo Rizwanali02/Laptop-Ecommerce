@@ -16,7 +16,7 @@ dbConnection();
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://laptop-ecommerce-zeta.vercel.app',
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials: true
 }));
