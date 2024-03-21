@@ -31,7 +31,7 @@ app.use(fileupload({
 
 // Routes
 app.get("/", (req, res) => {
-    res.send().json({ message: "deploying" })
+    res.send("Backend deployed successfully")
 })
 app.use("/api/v2/user", userRouter); // User Routes
 app.use("/api/v2/lapy", lapyRouter); // Admin Routes
