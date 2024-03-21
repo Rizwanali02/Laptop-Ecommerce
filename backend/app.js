@@ -16,7 +16,7 @@ dbConnection();
 
 // Middleware
 app.use(cors({
-    origin: '*',
+    origin: 'https://laptop-ecommerce-0czh.onrender.com',
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials: true
 }));
