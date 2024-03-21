@@ -25,7 +25,7 @@ const UpdateProducts = () => {
     const fetchProduct = async () => {
       try {
         const { data } = await axios.get(
-          `https://laptop-ecommerce-0czh.onrender.com//api/v2/lapy/singlelapy/${id}`,
+          `https://laptop-ecommerce-0czh.onrender.com/api/v2/lapy/singlelapy/${id}`,
           { withCredentials: true }
         );
         setLaptopName(data.lapy.laptopName);

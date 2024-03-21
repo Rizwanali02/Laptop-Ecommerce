@@ -34,7 +34,7 @@ export default function Navbar() {
     e.preventDefault();
     try {
       const { data } = await axios.get(
-        "https://laptop-ecommerce-0czh.onrender.com//api/v2/user/logout",
+        "https://laptop-ecommerce-0czh.onrender.com/api/v2/user/logout",
         { withCredentials: true }
       );
       setIsAuthenticated(false);

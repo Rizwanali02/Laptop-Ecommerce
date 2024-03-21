@@ -13,7 +13,7 @@ const useUpdateProfile = () => {
         setLoading(true)
         try {
             const res = await axios.put(
-                `https://laptop-ecommerce-0czh.onrender.com//api/v2/user/myprofile/${user?.user?._id}`,
+                `https://laptop-ecommerce-0czh.onrender.com/api/v2/user/myprofile/${user?.user?._id}`,
                 formData,
                 {
                     headers: {

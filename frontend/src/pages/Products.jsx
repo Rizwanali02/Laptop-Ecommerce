@@ -13,7 +13,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const { data } = await axios.get(
-          `https://laptop-ecommerce-0czh.onrender.com//api/v2/lapy/all`,
+          `https://laptop-ecommerce-0czh.onrender.com/api/v2/lapy/all`,
           {
             withCredentials: true,
           }
