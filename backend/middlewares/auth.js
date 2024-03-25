@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 
 const isAuthenticated = asyncHandler(async (req, res, next) => {
-  const { token } = req.cookies;
+  const  token = req.cookies.token || req.headers.authorization?.replace("Bearer ", "");
   if (!token) {
     return next(new ErrorHandler("User is not authenticated", 400));
   }

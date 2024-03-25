@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { serverUrl } from '../env/env';
+import { serverUrl, axiosConfig } from '../env/env';
 
 
 const useUpdateProfile = () => {
@@ -16,12 +16,7 @@ const useUpdateProfile = () => {
             const res = await axios.put(
                 `${serverUrl}/api/v2/user/myprofile/${user?.user?._id}`,
                 formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                    withCredentials: true,
-                }
+                axiosConfig
             );
             console.log(res);
             const newUser = res.data;

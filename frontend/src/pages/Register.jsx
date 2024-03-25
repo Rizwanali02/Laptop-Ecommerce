@@ -3,7 +3,7 @@ import { useAuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { serverUrl } from "../env/env";
+import { serverUrl, axiosConfig } from "../env/env";
 
 const Register = () => {
   const { mode, setUser } = useAuthContext("");
@@ -27,12 +27,7 @@ const Register = () => {
       const { data } = await axios.post(
         `${serverUrl}/api/v2/user/register`,
         formData,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        axiosConfig
       );
       // Clear all form fields after successful registration
       setUser(data);

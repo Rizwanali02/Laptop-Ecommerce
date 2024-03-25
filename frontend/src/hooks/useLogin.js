@@ -3,7 +3,7 @@ import { useAuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { serverUrl } from "../env/env";
+import { serverUrl, axiosConfig } from "../env/env";
 
 const useLogin = () => {
     const navigate = useNavigate();
@@ -20,10 +20,7 @@ const useLogin = () => {
             const res = await axios.post(
                 `${serverUrl}/api/v2/user/login`,
                 { email, password },
-                {
-                    withCredentials: true,
-                    headers: { "Content-Type": "application/json" },
-                }
+                axiosConfig
             );
 
             const data = res.data;

@@ -10,7 +10,7 @@ import { CiDark } from "react-icons/ci";
 import { MdSunny } from "react-icons/md";
 import { MdManageAccounts } from "react-icons/md";
 import MyProfile from "../pages/MyProfile";
-import {serverUrl} from "../env/env"
+import {axiosConfig, serverUrl} from "../env/env"
 export default function Navbar() {
   const {
     mode,
@@ -36,7 +36,7 @@ export default function Navbar() {
     try {
       const { data } = await axios.get(
         serverUrl+"/api/v2/user/logout",
-        { withCredentials: true }
+        { withCredentials: true, config:axiosConfig}
       );
       setIsAuthenticated(false);
       localStorage.removeItem("lapy-user");
