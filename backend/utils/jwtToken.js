@@ -5,7 +5,7 @@ const sendToken = (user, statusCode, message, res) => {
         Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
       ),
       httpOnly: true,
-      domain:"https://laptop-ecommerce-0czh.onrender.com"
+      domain:"https://laptop-ecommerce-zeta.vercel.app"
     
     };
     res.status(statusCode).cookie("token", token, options).json({
