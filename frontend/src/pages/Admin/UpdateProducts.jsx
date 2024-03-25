@@ -3,7 +3,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import { useParams } from "react-router-dom";
 import useUpdateProduct from "../../hooks/useUpdateProduct.js";
 import axios from "axios";
-import { serverUrl } from '../env/env';
+import { serverUrl } from '../../env/env.js';
 
 const UpdateProducts = () => {
   const { id } = useParams();

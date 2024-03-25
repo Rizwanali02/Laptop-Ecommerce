@@ -5,7 +5,7 @@ import { BeatLoader } from "react-spinners";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
-import { serverUrl } from '../env/env';
+import { serverUrl } from '../../env/env';
 
 const MyProducts = () => {
   const [myProduct, setMyProduct] = useState([]);
