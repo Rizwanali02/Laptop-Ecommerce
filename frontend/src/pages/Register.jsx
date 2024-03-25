@@ -24,7 +24,7 @@ const Register = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        `https://laptop-ecommerce-0czh.onrender.com/api/v2/user/register`,
+        `http://localhost:8000/api/v2/user/register`,
         formData,
         {
           withCredentials: true,

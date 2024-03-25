@@ -1,7 +1,7 @@
 
 // Assuming ErrorHandler is a custom error handling middleware
 class ErrorHandler extends Error {
-    constructor(statusCode, message) {
+    constructor(message, statusCode) {
         super(message);
         this.statusCode = statusCode;
     }

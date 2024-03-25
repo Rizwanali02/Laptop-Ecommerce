@@ -11,12 +11,14 @@ import { errorMiddleware } from './utils/error.js';
 const app = express();
 dotenv.config();
 
+
 // Database Connection
 dbConnection();
 
 // Middleware
+
 app.use(cors({
-    origin: 'https://laptop-ecommerce-zeta.vercel.app',
+    origin: ["http://localhost:5173"], // Allow requests from all origins
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials: true
 }));

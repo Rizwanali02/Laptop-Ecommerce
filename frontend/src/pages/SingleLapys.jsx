@@ -14,7 +14,7 @@ const SingleLapys = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `https://laptop-ecommerce-0czh.onrender.com/api/v2/lapy/singlelapy/${id}`
+          `http://localhost:8000/api/v2/lapy/singlelapy/${id}`
         );
         setProduct(data.lapy);
       } catch (error) {

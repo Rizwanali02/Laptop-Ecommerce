@@ -34,13 +34,14 @@ export default function Navbar() {
     e.preventDefault();
     try {
       const { data } = await axios.get(
-        "https://laptop-ecommerce-0czh.onrender.com/api/v2/user/logout",
+        "http://localhost:8000/api/v2/user/logout",
         { withCredentials: true }
       );
       setIsAuthenticated(false);
       localStorage.removeItem("lapy-user");
       localStorage.removeItem("lapy-cart");
       // setCart([]);
+      setUser(null);
       localStorage.removeItem("token");
       toast.success(data.message);
     } catch (error) {

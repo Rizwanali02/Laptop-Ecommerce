@@ -54,6 +54,7 @@ const login = asyncHandler(async (req, res, next) => {
         sendToken(user, 200, "User logged in successfully", res);
     } catch (error) {
         console.log(`Error in login ${error}`);
+        throw error
     }
 });
 

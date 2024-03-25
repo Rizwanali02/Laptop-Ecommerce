@@ -17,7 +17,7 @@ const useLogin = () => {
         setLoading(true);
         try {
             const res = await axios.post(
-                `https://laptop-ecommerce-0czh.onrender.com/api/v2/user/login`,
+                `http://localhost:8000/api/v2/user/login`,
                 { email, password },
                 {
                     withCredentials: true,
@@ -38,7 +38,7 @@ const useLogin = () => {
             navigate("/");
         } catch (error) {
             console.error("Login failed:", error);
-            toast.error("Login failed");
+            toast.error(error?.response?.data?.message);
         } finally {
             setLoading(false);
         }
