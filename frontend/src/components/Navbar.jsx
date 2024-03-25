@@ -10,6 +10,7 @@ import { CiDark } from "react-icons/ci";
 import { MdSunny } from "react-icons/md";
 import { MdManageAccounts } from "react-icons/md";
 import MyProfile from "../pages/MyProfile";
+import {serverUrl} from "../env/env"
 export default function Navbar() {
   const {
     mode,
@@ -34,7 +35,7 @@ export default function Navbar() {
     e.preventDefault();
     try {
       const { data } = await axios.get(
-        "http://localhost:8000/api/v2/user/logout",
+        serverUrl+"/api/v2/user/logout",
         { withCredentials: true }
       );
       setIsAuthenticated(false);

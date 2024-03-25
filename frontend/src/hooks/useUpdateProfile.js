@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { serverUrl } from '../env/env';
 
 
 const useUpdateProfile = () => {
@@ -13,7 +14,7 @@ const useUpdateProfile = () => {
         setLoading(true)
         try {
             const res = await axios.put(
-                `http://localhost:8000/api/v2/user/myprofile/${user?.user?._id}`,
+                `${serverUrl}/api/v2/user/myprofile/${user?.user?._id}`,
                 formData,
                 {
                     headers: {

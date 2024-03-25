@@ -5,6 +5,7 @@ import { BeatLoader } from "react-spinners";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
+import { serverUrl } from '../env/env';
 
 const MyProducts = () => {
   const [myProduct, setMyProduct] = useState([]);
@@ -15,7 +16,7 @@ const MyProducts = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `http://localhost:8000/api/v2/lapy/mylapys`,
+          `${serverUrl}/api/v2/lapy/mylapys`,
           {
             withCredentials: true,
           }
@@ -33,7 +34,7 @@ const MyProducts = () => {
 
   const deleteProductHandler = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/v2/lapy/delete/${id}`, {
+      await axios.delete(`${serverUrl}/api/v2/lapy/delete/${id}`, {
         withCredentials: true,
       });
 

@@ -3,6 +3,7 @@ import { useAuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { serverUrl } from "../env/env";
 
 const useLogin = () => {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ const useLogin = () => {
         setLoading(true);
         try {
             const res = await axios.post(
-                `http://localhost:8000/api/v2/user/login`,
+                `${serverUrl}/api/v2/user/login`,
                 { email, password },
                 {
                     withCredentials: true,

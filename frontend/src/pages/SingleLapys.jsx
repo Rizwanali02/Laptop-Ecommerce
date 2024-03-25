@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { serverUrl } from '../env/env';
 
 const SingleLapys = () => {
   const { mode } = useAuthContext();
@@ -14,7 +15,7 @@ const SingleLapys = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `http://localhost:8000/api/v2/lapy/singlelapy/${id}`
+          `${serverUrl}/api/v2/lapy/singlelapy/${id}`
         );
         setProduct(data.lapy);
       } catch (error) {

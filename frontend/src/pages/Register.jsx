@@ -3,6 +3,7 @@ import { useAuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { serverUrl } from "../env/env";
 
 const Register = () => {
   const { mode, setUser } = useAuthContext("");
@@ -24,7 +25,7 @@ const Register = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        `http://localhost:8000/api/v2/user/register`,
+        `${serverUrl}/api/v2/user/register`,
         formData,
         {
           withCredentials: true,

@@ -2,6 +2,7 @@ import  { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { serverUrl } from '../env/env';
 
 const useCreateProduct = () => {
     const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ const useCreateProduct = () => {
         const token = localStorage.getItem("token");
         try {
 
-            const res = await axios.post("http://localhost:8000/api/v2/lapy/post", formData, {
+            const res = await axios.post(serverUrl+"/api/v2/lapy/post", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`,

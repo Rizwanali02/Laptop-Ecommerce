@@ -4,6 +4,7 @@ import { BeatLoader } from "react-spinners";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { serverUrl } from "../env/env";
 
 const Products = () => {
   const { mode, lapy, setLapy, cart, addToCart, removeFromCart } =
@@ -13,7 +14,7 @@ const Products = () => {
     const fetchProducts = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8000/api/v2/lapy/all`,
+          `${serverUrl}/api/v2/lapy/all`,
           {
             withCredentials: true,
           }

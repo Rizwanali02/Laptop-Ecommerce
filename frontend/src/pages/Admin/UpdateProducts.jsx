@@ -3,6 +3,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import { useParams } from "react-router-dom";
 import useUpdateProduct from "../../hooks/useUpdateProduct.js";
 import axios from "axios";
+import { serverUrl } from '../env/env';
 
 const UpdateProducts = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const UpdateProducts = () => {
     const fetchProduct = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8000/api/v2/lapy/singlelapy/${id}`,
+          `${serverUrl}/api/v2/lapy/singlelapy/${id}`,
           { withCredentials: true }
         );
         setLaptopName(data.lapy.laptopName);

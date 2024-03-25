@@ -2,6 +2,7 @@ import  { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { serverUrl } from '../env/env';
 
 const useUpdateProduct = () => {
     const [loading, setLoading] = useState(false);
@@ -13,7 +14,7 @@ const useUpdateProduct = () => {
  
         try {
 
-            const res = await axios.put(`http://localhost:8000/api/v2/lapy/update/${id}`, updateProduct, {
+            const res = await axios.put(`${serverUrl}/api/v2/lapy/update/${id}`, updateProduct, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     // Authorization: `Bearer ${token}`,
