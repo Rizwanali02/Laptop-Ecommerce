@@ -89,6 +89,7 @@ const SingleLapys = () => {
                 />
               </Link>
             </div>
+            
             <p className="">
               If you want to buy this product click on whatsapp icon and contact
               me
