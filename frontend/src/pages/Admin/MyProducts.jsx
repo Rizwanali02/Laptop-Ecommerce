@@ -15,16 +15,13 @@ const MyProducts = () => {
     const fetchMyProducts = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get(
-          `${backendUrl}/api/v2/lapy/mylapys`,
-          {
-            withCredentials: true,
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          }
-        );
+        const { data } = await axios.get(`${backendUrl}/api/v2/lapy/mylapys`, {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
         setMyProduct(data.lapys);
       } catch (error) {
         console.log(error);
@@ -38,7 +35,7 @@ const MyProducts = () => {
 
   const deleteProductHandler = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/v2/lapy/delete/${id}`, {
+      await axios.delete(`${backendUrl}/api/v2/lapy/delete/${id}`, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +50,6 @@ const MyProducts = () => {
       console.log(error);
     }
   };
-
 
   return (
     <div

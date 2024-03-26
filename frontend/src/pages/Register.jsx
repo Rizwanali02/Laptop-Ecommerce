@@ -42,7 +42,7 @@ const Register = () => {
       setPassword("");
       setConfirmPassword("");
       toast.success(data.message);
-      navigate("/");
+      navigate("/login");
       // You may also want to show a success message or navigate to a different page here
     } catch (error) {
       console.log("register error ----", error);
