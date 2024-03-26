@@ -37,6 +37,6 @@ app.use("/api/v2/user", userRouter); // User Routes
 app.use("/api/v2/lapy", lapyRouter); // Admin Routes
 
 
-app.use(errorMiddleware);
+// app.use(errorMiddleware);
 
 export default app;

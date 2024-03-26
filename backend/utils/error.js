@@ -1,5 +1,3 @@
-
-// Assuming ErrorHandler is a custom error handling middleware
 class ErrorHandler extends Error {
     constructor(statusCode, message) {
         super(message);
@@ -7,14 +5,13 @@ class ErrorHandler extends Error {
     }
 }
 
-
 export const errorMiddleware = (err, req, res, next) => {
     err.message = err.message || "Internal Server Error";
     err.statusCode = err.statusCode || 500;
 
     if (err.name === "CastError") {
         const message = `Invalid Resource not found ${err.path}`;
-        err.statusCode = 404; // Set status code to 404 for CastError
+        err.statusCode = 404; 
     }
 
     return res.status(err.statusCode).json({
@@ -23,6 +20,4 @@ export const errorMiddleware = (err, req, res, next) => {
     });
 };
 
-
-
-export { ErrorHandler }
+export { ErrorHandler };
