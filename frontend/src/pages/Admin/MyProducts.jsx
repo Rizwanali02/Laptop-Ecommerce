@@ -40,6 +40,10 @@ const MyProducts = () => {
     try {
       await axios.delete(`http://localhost:8000/api/v2/lapy/delete/${id}`, {
         withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
       });
 
       setMyProduct(myProduct.filter((product) => product._id !== id));
