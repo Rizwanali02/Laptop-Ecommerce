@@ -33,9 +33,17 @@ export default function Navbar() {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`${backendUrl}/api/v2/user/logout`, {}, {
-        withCredentials: true,
-      });
+      const { data } = await axios.post(
+        `${backendUrl}/api/v2/user/logout`,
+        {},
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       setIsAuthenticated(false);
       localStorage.removeItem("lapy-user");
       localStorage.removeItem("lapy-cart");
@@ -46,7 +54,6 @@ export default function Navbar() {
       console.log(error);
     }
   };
-  
 
   return (
     <Disclosure
