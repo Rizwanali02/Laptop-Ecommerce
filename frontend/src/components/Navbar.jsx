@@ -33,7 +33,7 @@ export default function Navbar() {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.get(`${backendUrl}/api/v2/user/logout`, {
+      const { data } = await axios.post(`${backendUrl}/api/v2/user/logout`, {}, {
         withCredentials: true,
       });
       setIsAuthenticated(false);
@@ -46,6 +46,7 @@ export default function Navbar() {
       console.log(error);
     }
   };
+  
 
   return (
     <Disclosure

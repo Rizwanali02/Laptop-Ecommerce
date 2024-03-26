@@ -16,7 +16,7 @@ dbConnection();
 
 // Middleware
 app.use(cors({
-    origin: "https://laptop-ecommerce-pink.vercel.app",
+    origin: ["https://laptop-ecommerce-pink.vercel.app","http://localhost:5173"],
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials: true
 }));
