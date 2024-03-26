@@ -19,6 +19,10 @@ const MyProducts = () => {
           `${backendUrl}/api/v2/lapy/mylapys`,
           {
             withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
           }
         );
         setMyProduct(data.lapys);

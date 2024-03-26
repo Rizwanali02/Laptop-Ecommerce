@@ -27,7 +27,13 @@ const UpdateProducts = () => {
       try {
         const { data } = await axios.get(
           `${backendUrl}/api/v2/lapy/singlelapy/${id}`,
-          { withCredentials: true }
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
         );
         setLaptopName(data.lapy.laptopName);
         setBrand(data.lapy.brand);
