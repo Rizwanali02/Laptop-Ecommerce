@@ -11,14 +11,12 @@ import { errorMiddleware } from './utils/error.js';
 const app = express();
 dotenv.config();
 
-
 // Database Connection
 dbConnection();
 
 // Middleware
-
 app.use(cors({
-    origin: ["http://localhost:5173","https://laptop-ecommerce-zeta.vercel.app"], // Allow requests from all origins
+    origin: 'http://localhost:5173', 
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials: true
 }));
@@ -30,11 +28,11 @@ app.use(fileupload({
     useTempFiles: true,
     tempFileDir: '/tmp/'
 }));
-
-// Routes
 app.get("/", (req, res) => {
-    res.send("Backend deployed successfully")
+    res.send("Backend Runing...")
+
 })
+// Routes
 app.use("/api/v2/user", userRouter); // User Routes
 app.use("/api/v2/lapy", lapyRouter); // Admin Routes
 

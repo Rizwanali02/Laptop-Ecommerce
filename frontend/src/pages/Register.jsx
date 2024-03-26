@@ -3,7 +3,7 @@ import { useAuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { serverUrl, axiosConfig } from "../env/env";
+import { backendUrl } from "../constant/constant";
 
 const Register = () => {
   const { mode, setUser } = useAuthContext("");
@@ -25,9 +25,14 @@ const Register = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        `${serverUrl}/api/v2/user/register`,
+        `${backendUrl}/api/v2/user/register`,
         formData,
-        axiosConfig
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       // Clear all form fields after successful registration
       setUser(data);
@@ -41,7 +46,7 @@ const Register = () => {
       // You may also want to show a success message or navigate to a different page here
     } catch (error) {
       console.log("register error ----", error);
-      toast.error("register error")
+      toast.error("register error");
     } finally {
       setLoading(false);
     }

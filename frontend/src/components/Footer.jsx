@@ -15,7 +15,7 @@ const Footer = () => {
         <p>
           Shashtri Nagar Jaipur, Rajasthan, IN
           <br />
-          +91-8696916676
+          +91-7976157614
         </p>
       </aside>
       <nav>

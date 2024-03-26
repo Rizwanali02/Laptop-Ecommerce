@@ -3,7 +3,7 @@ import { useAuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { serverUrl, axiosConfig } from "../env/env";
+import { backendUrl } from "../constant/constant";
 
 const useLogin = () => {
     const navigate = useNavigate();
@@ -18,9 +18,12 @@ const useLogin = () => {
         setLoading(true);
         try {
             const res = await axios.post(
-                `${serverUrl}/api/v2/user/login`,
+                `${backendUrl}/api/v2/user/login`,
                 { email, password },
-                axiosConfig
+                {
+                    withCredentials: true,
+                    headers: { "Content-Type": "application/json" },
+                }
             );
 
             const data = res.data;
@@ -36,7 +39,7 @@ const useLogin = () => {
             navigate("/");
         } catch (error) {
             console.error("Login failed:", error);
-            toast.error(error?.response?.data?.message);
+            toast.error("Login failed");
         } finally {
             setLoading(false);
         }

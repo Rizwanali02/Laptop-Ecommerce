@@ -3,7 +3,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import { useParams } from "react-router-dom";
 import useUpdateProduct from "../../hooks/useUpdateProduct.js";
 import axios from "axios";
-import { serverUrl, axiosConfig } from '../../env/env.js';
+import { backendUrl } from "../../constant/constant.js";
 
 const UpdateProducts = () => {
   const { id } = useParams();
@@ -26,7 +26,8 @@ const UpdateProducts = () => {
     const fetchProduct = async () => {
       try {
         const { data } = await axios.get(
-          `${serverUrl}/api/v2/lapy/singlelapy/${id}`,axiosConfig
+          `${backendUrl}/api/v2/lapy/singlelapy/${id}`,
+          { withCredentials: true }
         );
         setLaptopName(data.lapy.laptopName);
         setBrand(data.lapy.brand);
@@ -37,7 +38,6 @@ const UpdateProducts = () => {
         setDisplay(data.lapy.displaySize);
         setOther(data.lapy.other);
         setPrice(data.lapy.price);
-    
       } catch (error) {
         console.log(`error ${error}`);
       }

@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 
 const isAuthenticated = asyncHandler(async (req, res, next) => {
-  const  token = req.cookies.token || req.headers.authorization?.replace("Bearer ", "");
+  const { token } = req.cookies;
   if (!token) {
     return next(new ErrorHandler("User is not authenticated", 400));
   }
@@ -20,15 +20,12 @@ const isAuthenticated = asyncHandler(async (req, res, next) => {
 });
 
 
-
-
-
 const isAuthorized = (isAdminRequired) => {
   return (req, res, next) => {
     if (isAdminRequired && req.user.isAdmin === true) {
       next(); // Call next() only if isAdmin is true and admin authorization is required
     } else {
-      return next(new ErrorHandler(`You are not an Admin`, 403)); // Change status code to 403 (Forbidden)
+      return next(new ErrorHandler(`You are not an Admin`, 403)); 
     }
   };
 };

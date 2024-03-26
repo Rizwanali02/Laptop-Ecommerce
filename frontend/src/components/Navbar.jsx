@@ -8,9 +8,8 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { CiDark } from "react-icons/ci";
 import { MdSunny } from "react-icons/md";
-import { MdManageAccounts } from "react-icons/md";
-import MyProfile from "../pages/MyProfile";
-import {axiosConfig, serverUrl} from "../env/env"
+import { backendUrl } from "../constant/constant";
+
 export default function Navbar() {
   const {
     mode,
@@ -34,14 +33,12 @@ export default function Navbar() {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.get(
-        serverUrl+"/api/v2/user/logout",
-        { withCredentials: true, config:axiosConfig}
-      );
+      const { data } = await axios.get(`${backendUrl}/api/v2/user/logout`, {
+        withCredentials: true,
+      });
       setIsAuthenticated(false);
       localStorage.removeItem("lapy-user");
       localStorage.removeItem("lapy-cart");
-      // setCart([]);
       setUser(null);
       localStorage.removeItem("token");
       toast.success(data.message);
@@ -162,7 +159,7 @@ export default function Navbar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     <Link
-                      to="https://api.whatsapp.com/send?phone=8696916676"
+                      to="https://api.whatsapp.com/send?phone=7976157614"
                       target="_blank"
                       className=" btn btn-primary btn-outline"
                     >
@@ -187,33 +184,6 @@ export default function Navbar() {
                     </button>
                   </div>
                 </div>
-                {isAuthenticated && (
-                  <div className="hidden sm:ml-6 sm:block">
-                    <div className="flex space-x-4">
-                      <div className="dropdown">
-                        <div tabIndex={0} role="button">
-                          {mode === "light" ? (
-                            <MdManageAccounts className="text-2xl size-10  hover:text-gray-500 bg-gray-900 text-white" />
-                          ) : (
-                            <MdManageAccounts className="text-2xl size-10 text-white bg-slate-950 hover:text-gray-400" />
-                          )}
-                        </div>
-                        <div
-                          tabIndex={0}
-                          className={`dropdown-content z-[1] card card-compact w-80 p-2 shadow  ${
-                            mode === "dark"
-                              ? "bg-slate-700 text-white"
-                              : "bg-white text-black"
-                          }`}
-                        >
-                          <div className="card-body">
-                            <MyProfile />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -278,7 +248,7 @@ export default function Navbar() {
               )}
 
               <Link
-                to="https://api.whatsapp.com/send?phone=8696916676"
+                to="https://api.whatsapp.com/send?phone=7976157614"
                 target="_blank"
                 className={`btn btn-primary btn-outline text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-white
                   `}
