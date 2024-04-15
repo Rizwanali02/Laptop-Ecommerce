@@ -16,11 +16,11 @@ const MyProducts = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(`${backendUrl}/api/v2/lapy/mylapys`, {
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
-            // Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
-          withCredentials: true,
         });
         setMyProduct(data.lapys);
       } catch (error) {
@@ -69,7 +69,7 @@ const MyProducts = () => {
               <img
                 className="w-full h-52 transition-transform duration-300 transform hover:scale-105"
                 src={product.mainImage.url}
-                alt={product.laptopName} 
+                alt={product.laptopName} // Alt text should be dynamic
               />
             </figure>
             <div className="card-body p-4">
